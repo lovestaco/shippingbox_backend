@@ -6,21 +6,21 @@
 //   .listen(3001);
 
 const express = require("express");
-const json = require("express");
-
+const cors = require("cors");
+var bodyParser = require("body-parser");
 const app = express();
-app.use(express.json());
-
 const port = 3001;
+
+app.use(express.json());
+app.use(bodyParser.json());
 app.listen(port);
+app.use(cors());
+
 const students = [];
 
 app.get("/", (req, res) => {
   res.send(`Hello from help!`);
 });
-
-var bodyParser = require("body-parser");
-app.use(bodyParser.json());
 
 app.get("/students/", (req, res) => {
   res.send(students);
