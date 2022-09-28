@@ -15,13 +15,15 @@ const port = 3001;
 app.listen(port);
 const students = [];
 
-// app.get(endpoint, callback);
+app.get("/", (req, res) => {
+  res.send(`Hello from help!`);
+});
 
-app.get("/help", (req, res) => {
-  res.send(`Hello from help! 
-  APIs are 
-  /big
-  /greet`);
+var bodyParser = require("body-parser");
+app.use(bodyParser.json());
+
+app.get("/students/", (req, res) => {
+  res.send(students);
 });
 
 app.post("/students", function (req, res) {
@@ -30,13 +32,20 @@ app.post("/students", function (req, res) {
   res.send(students);
 });
 
-app.post("/test", (req, res) => {
-  res.json({ body: req.body });
-});
-
 app.put("/students:id", (req, res) => {
   var id = req.body.id;
   var index = students.findIndex((student) => student.id == id);
   students[index] = req.body;
   res.send(students);
+});
+
+app.delete("/products/:id", (req, res) => {
+  try {
+    const { id } = req.params.id;
+    var index = students.findIndex((student) => student.id == id);
+    students.splice(index, 1);
+    res.send(`Delete record with id ${id}`);
+  } catch (e) {
+    res.send(e, id, index);
+  }
 });
