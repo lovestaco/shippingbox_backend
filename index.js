@@ -1,10 +1,3 @@
-// const http = require("http");
-// http
-//   .createServer((req, res) => {
-//     res.end("Hellow");
-//   })
-//   .listen(3001);
-
 const express = require("express");
 const cors = require("cors");
 var bodyParser = require("body-parser");
