@@ -9,7 +9,7 @@ module.exports = {
       const database = client.db("shipping");
       const formOrders = database.collection("formOrders");
       const result = await formOrders.insertOne(data);
-      console.log(result);
+      return result;
     } catch (e) {
       console.error(e);
     } finally {

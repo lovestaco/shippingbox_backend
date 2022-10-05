@@ -3,7 +3,7 @@ const cors = require("cors");
 var bodyParser = require("body-parser");
 const app = express();
 const port = 3001;
-
+const { insertToMongo, listDatabases } = require("./db");
 app.use(express.json());
 app.use(bodyParser.json());
 app.listen(port);
@@ -21,8 +21,8 @@ app.get("/students/", (req, res) => {
 
 app.post("/students", function (req, res) {
   var student = req.body;
-  students.push(student);
-  res.send(students);
+  var dbResponse = insertToMongo(student);
+  res.send(dbResponse);
 });
 
 app.put("/students:id", (req, res) => {
