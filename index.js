@@ -3,7 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 const app = express();
 const port = 3001;
-import { insertToMongo, listDatabases } from "./db.js";
+import { insertToMongo } from "./db.js";
 app.use(express.json());
 app.use(bodyParser.json());
 app.listen(port);
