@@ -1,9 +1,9 @@
-const express = require("express");
-const cors = require("cors");
-var bodyParser = require("body-parser");
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
 const app = express();
 const port = 3001;
-const { insertToMongo, listDatabases } = require("./db");
+import { insertToMongo, listDatabases } from "./db.js";
 app.use(express.json());
 app.use(bodyParser.json());
 app.listen(port);
